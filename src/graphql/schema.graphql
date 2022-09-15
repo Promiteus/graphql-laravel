@@ -33,4 +33,5 @@ type Comment {
     id: ID!
     issue: Issue! @belongsTo
     author: User! @belongsTo
+    content: String!
 }
