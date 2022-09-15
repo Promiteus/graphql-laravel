@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * Class User
+ * @package App\Models
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -18,6 +22,7 @@ class User extends Authenticatable
     public const NAME = "name";
     public const EMAIL = "email";
     public const PASSWORD = "password";
+    public const REMEMBER_TOKEN = "remember_token";
 
     /**
      * The attributes that are mass assignable.
@@ -25,9 +30,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        self::NAME,
+        self::EMAIL,
+        self::PASSWORD,
     ];
 
     /**
@@ -36,8 +41,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        self::PASSWORD,
+        self::REMEMBER_TOKEN,
     ];
 
     /**
@@ -53,7 +58,7 @@ class User extends Authenticatable
      * @return HasMany
      */
     public function issues(): HasMany {
-        return $this->hasMany(Issue::class, Issue::AUTHOR_ID, 'id');
+        return $this->hasMany(Issue::class, Issue::AUTHOR_ID, self::ID);
     }
 
     /**
