@@ -32,7 +32,7 @@ services:
       timeout: 20s
       retries: 10
     ports:
-      - "3309:3306"
+      - "3310:3306"
       - "33069:33060"
     volumes:
       - ./docker/mysql/db:/var/lib/mysql
@@ -43,7 +43,7 @@ services:
     build: docker/nginx
     stdin_open: true
     depends_on:
-      - crud-php-fpm
+      - php-fpm
     ports:
       - "1010:1000"
     volumes: # Передает кофигурацию для веб-сервера
