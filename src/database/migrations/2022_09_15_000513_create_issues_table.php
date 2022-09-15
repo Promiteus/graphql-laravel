@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Issue;
+use App\Models\User;
 
 class CreateIssuesTable extends Migration
 {
@@ -21,6 +22,15 @@ class CreateIssuesTable extends Migration
             $table->string(Issue::TITLE);
             $table->text(Issue::DESCRIPTION);
             $table->timestamps();
+            $table->foreign(Issue::AUTHOR_ID)
+                ->references(User::ID)
+                ->on(User::TABLE_NAME)
+                ->cascadeOnDelete();
+            $table->foreign(Issue::ASSIGNEE_ID)
+                ->references(User::ID)
+                ->on(User::TABLE_NAME)
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
         });
     }
 
