@@ -43,7 +43,7 @@ export default function IssueTracker() {
 
     return <ul>
         {data?.issues.map((issue) => {
-            return <li>
+            return <li key={issue?.id}>
                 <div>
                     <p>id: {issue?.id}</p>
                     <p>title: {issue?.title}</p>

@@ -1,4 +1,3 @@
-## Данный проект черпал идеи из статьи https://dev-gang.ru/article/sozdavaite-i-zasczisczaite-api-graphql-s-pomosczu-laravel-vxjbwvy7ls/
 
 ### Тест запроса к graphql
 1. Запустить проект (команды вызываются в корне проекта):
@@ -37,3 +36,10 @@ query GetIssues {
   }
 }
 </code>
+
+Также проверить можно на фронте (React/ApolloClient): 
+
+> cd ./graphql-demo-frontend
+
+> npm start
+
