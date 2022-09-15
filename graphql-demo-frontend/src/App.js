@@ -12,7 +12,7 @@ function App() {
   return (
       <Router>
         <Route path='/' exact={true} component={Home} />
-        <SecureRoute path='/issue-tracker' component={IssueTracker} />
+        <Route path='/issue-tracker' component={IssueTracker} />
       </Router>
   );
 }
