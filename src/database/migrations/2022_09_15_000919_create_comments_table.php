@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Comment;
 
 class CreateCommentsTable extends Migration
 {
@@ -13,8 +14,11 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+        Schema::create(Comment::TABLE_NAME, function (Blueprint $table) {
+            $table->id(Comment::ID);
+            $table->unsignedBigInteger(Comment::ISSUE_ID);
+            $table->string(Comment::CONTENT);
+            $table->unsignedBigInteger(Comment::AUTHOR_ID);
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists(Comment::TABLE_NAME);
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Issue;
 
 class CreateIssuesTable extends Migration
 {
@@ -13,8 +14,12 @@ class CreateIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('issues', function (Blueprint $table) {
-            $table->id();
+        Schema::create(Issue::TABLE_NAME, function (Blueprint $table) {
+            $table->id('id');
+            $table->unsignedBigInteger(Issue::AUTHOR_ID);
+            $table->unsignedBigInteger(Issue::ASSIGNEE_ID);
+            $table->string(Issue::TITLE);
+            $table->text(Issue::DESCRIPTION);
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateIssuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('issues');
+        Schema::dropIfExists(Issue::TABLE_NAME);
     }
 }
